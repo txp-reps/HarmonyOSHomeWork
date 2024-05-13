@@ -1,0 +1,41 @@
+{
+  "app": {
+    "signingConfigs": [
+      {
+        "name": "default",
+        "type": "HarmonyOS",
+        "material": {
+          "certpath": "/Users/xiaopeng.tang/.ohos/config/auto_debug_MyApplication_com.example.myapplication_80086000161462773.cer",
+          "storePassword": "0000001B18B5BFA247F26563F43375052382A13D9CF622D82A76899A37BEF97789F35FCB38B07F1AA33589",
+          "keyAlias": "debugKey",
+          "keyPassword": "0000001B4C52BB68BE65A7A1FC0C9009B24AEA208B508DD4146A6320020CCE2147997DC95D943FC16CE31F",
+          "profile": "/Users/xiaopeng.tang/.ohos/config/auto_debug_MyApplication_com.example.myapplication_80086000161462773.p7b",
+          "signAlg": "SHA256withECDSA",
+          "storeFile": "/Users/xiaopeng.tang/.ohos/config/auto_debug_MyApplication_com.example.myapplication_80086000161462773.p12"
+        }
+      }
+    ],
+    "compileSdkVersion": 9,
+    "compatibleSdkVersion": 9,
+    "products": [
+      {
+        "name": "default",
+        "signingConfig": "default",
+      }
+    ]
+  },
+  "modules": [
+    {
+      "name": "entry",
+      "srcPath": "./entry",
+      "targets": [
+        {
+          "name": "default",
+          "applyToProducts": [
+            "default"
+          ]
+        }
+      ]
+    }
+  ]
+}
