@@ -55,9 +55,9 @@ struct Login {
       Button("登录")
         .type(ButtonType.Capsule)
         .width("90%")
-        .onClick((e) => {
+        .onClick(() => {
           if (this.account !== "" || this.password !== "") {
-            router.replaceUrl({ url: 'pages/Index' });
+            router.replaceUrl({ url: 'pages/Objective' });
           }
         })
       Text("注册账号")
