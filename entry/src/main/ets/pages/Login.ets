@@ -42,7 +42,7 @@ struct Login {
           this.password = value
         })
 
-      Line().lineStyle()
+      Line().lineStyle();
 
       Row() {
         Text("短信验证码登录")

@@ -1,25 +1,22 @@
-import ItemRepo from '../ViewModel/ItemRepo'
-
 @Component
 export struct ItemCreate {
   @State text: string = ''
-  @Link items: string[];
+  private addItem: Function = null;
 
   build() {
-    Row() {
+    Row({ space: 10 }) {
       TextInput({ text: this.text, placeholder: "new item" })
         .onChange((value: string) => {
           this.text = value
         })
-        .width("80%")
+        .layoutWeight(8)
 
       Button("create")
         .onClick(() => {
-          ItemRepo.addItem(this.text.trim())
-          this.items = ItemRepo.getItems()
+          this.addItem(this.text)
           this.text = ''
         })
-        .width("20%")
+        .layoutWeight(2)
     }
     .width("93.3%")
     .justifyContent(FlexAlign.SpaceBetween)

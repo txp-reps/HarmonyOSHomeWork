@@ -1,12 +1,16 @@
 import CommonConstants from '../constant/CommonConstant';
 import { ItemCreate } from '../view/ItemCreate';
 import { ToDoListItem } from '../view/ToDoListItem'
-import ItemRepo from '../ViewModel/ItemRepo';
+import { ItemModel } from '../ViewModel/ItemViewModel';
 
 @Entry
 @Component
 struct Index {
-  @State items: string[] = ItemRepo.getItems();
+  @State itemModel: ItemModel = new ItemModel(
+    ["eating",
+      "exercise",
+      "shopping",
+      "homework"]);
 
   build() {
     Column() {
@@ -21,13 +25,20 @@ struct Index {
         })
         .textAlign(TextAlign.Start)
 
-      ForEach(this.items, (item: string, _: number) => {
-        ToDoListItem({ itemContent: item ,items: $items})
+      ForEach(this.itemModel.getItems(), (item: string, _: number) => {
+        ToDoListItem({ itemContent: item, delItem: this.delItem.bind(this) })
       })
-      ItemCreate({ items: $items })
+      ItemCreate({ addItem: this.addItem.bind(this) })
     }.width(CommonConstants.FULL_LENGTH)
     .height(CommonConstants.FULL_LENGTH)
     .backgroundColor($r('app.color.page_background'))
+  }
 
+  private delItem(itemToBeDeleted: string) {
+    this.itemModel.deleteItem(itemToBeDeleted)
+  }
+
+  private addItem(itemToBeAdded: string) {
+    this.itemModel.addItem(itemToBeAdded)
   }
 }

@@ -1,18 +1,17 @@
 import CommonConstants from '../constant/CommonConstant';
-import ItemRepo from '../ViewModel/ItemRepo';
 
 @Component
 export struct ToDoListItem {
   private itemContent: string = "";
   @State isComplete: boolean = false;
-  @Link items: string[];
+  private delItem: Function = null;
 
   build() {
     Row() {
       if (this.isComplete) {
         this.completeItem()
       } else {
-        this.incompleteItem()
+        this.incompleteItem(this.itemContent)
       }
       this.delButton()
     }
@@ -51,19 +50,19 @@ export struct ToDoListItem {
       .type(ButtonType.Capsule)
       .backgroundColor($r('app.color.delete_button'))
       .onClick(() => {
-        ItemRepo.deleteItem(this.itemContent)
-        this.items = ItemRepo.getItems()
+        this.delItem(this.itemContent)
       })
   }
+
   @Builder
-  private incompleteItem() {
+  private incompleteItem(content: string) {
     Row() {
       Image($r('app.media.ic_default'))
         .objectFit(ImageFit.Contain)
         .width($r('app.float.checkbox_width'))
         .height($r('app.float.checkbox_width'))
         .margin($r('app.float.checkbox_margin'))
-      Text(this.itemContent)
+      Text(content)
         .fontWeight(CommonConstants.FONT_WEIGHT)
         .fontSize($r('app.float.item_font_size'))
     }

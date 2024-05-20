@@ -1,10 +1,7 @@
-class ItemRepo {
-  private items: string[] = [
-    "eating",
-    "exercise",
-    "shopping",
-    "homework"
-  ];
+export class ItemModel {
+  refreshFlag:boolean = false;
+  constructor(public items: string[]) {
+  }
 
   getItems() {
     return this.items
@@ -15,7 +12,9 @@ class ItemRepo {
       return
     }
 
+    console.log(`add item: ${newItem}`)
     this.items.push(newItem)
+    this.refreshFlag = !this.refreshFlag
   }
 
   deleteItem(itemTobeDelete: string) {
@@ -26,5 +25,3 @@ class ItemRepo {
 
   }
 }
-
-export default new ItemRepo()
