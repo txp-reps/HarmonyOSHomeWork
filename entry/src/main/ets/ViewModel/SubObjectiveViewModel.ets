@@ -1,14 +1,11 @@
 export class SubObjectiveItemModel {
   constructor(public name: string,
               public progress: number,
-              public updateDate: Date) {
+              public updateDate: Date,
+              public isComplete = false) {
   }
 
-  static get defaultSubObjectiveData() {
-    return [
-      new SubObjectiveItemModel("吃饭", 10, new Date()),
-      new SubObjectiveItemModel("喝水", 20, new Date()),
-      new SubObjectiveItemModel("睡觉", 30, new Date()),
-    ]
+  equals(other: SubObjectiveItemModel): boolean {
+    return this.name === other.name;
   }
 }
