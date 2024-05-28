@@ -1,5 +1,3 @@
-
-
 @Component
 export struct ObjectiveSummary {
   @Prop private totalNumber: number;
@@ -38,15 +36,22 @@ export struct ObjectiveSummary {
         }
         .alignItems(HorizontalAlign.Start)
 
-        Button() {
+        Stack() {
           Row() {
             Text(this.completedNumber.toString()).fontColor('#007DFF')
             Text("/" + this.totalNumber.toString())
           }
+
+          Progress({
+            value: this.completedNumber,
+            total: this.totalNumber,
+            type: ProgressType.Ring,
+          })
+            .color('#007DFF')
+            .width(55)
+            .height(55)
         }
-        .type(ButtonType.Circle)
         .backgroundColor(Color.Transparent)
-        .borderWidth(1)
         .width(60)
         .height(60)
       }
@@ -61,5 +66,4 @@ export struct ObjectiveSummary {
     .borderRadius(20)
     .backgroundColor(Color.White)
   }
-
 }

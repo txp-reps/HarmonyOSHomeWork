@@ -1,31 +1,25 @@
 import { ObjectiveSummary } from '../view/ObjectiveSummary'
 import { SubObjectiveList } from '../view/SubObjectiveList'
-import { ObjectiveViewModel } from '../ViewModel/ObjectiveViewModel'
-import { SubObjectiveItemModel } from '../ViewModel/SubObjectiveViewModel';
 
 @Entry
 @Component
 struct Objective {
-  @State viewModel: ObjectiveViewModel = new ObjectiveViewModel([
-    new SubObjectiveItemModel("吃饭", 10, new Date()),
-    new SubObjectiveItemModel("喝水", 20, new Date()),
-    new SubObjectiveItemModel("睡觉", 30, new Date()),
-  ]);
-  ;
+  @State totalNum: number = 0;
+  @State completedNum: number = 0;
 
   build() {
     Column({ space: 10 }) {
       this.ObjectiveTitle()
 
       ObjectiveSummary({
-        totalNumber: this.viewModel.subObjectiveItemList.length,
-        completedNumber: this.viewModel.countCompletedItems(),
-        updateDate: new Date().toDateString()
+        totalNumber: this.totalNum,
+        completedNumber: this.completedNum,
+        updateDate: new Date().toTimeString()
       })
-        .layoutWeight(3)
+        .height('30%')
 
-      SubObjectiveList({ itemList: this.viewModel.subObjectiveItemList })
-        .layoutWeight(5)
+      SubObjectiveList({ totalNum: $totalNum, completedNum: $completedNum })
+        .height('60%')
     }
     .backgroundColor('#F1F3F5')
     .alignItems(HorizontalAlign.Start)

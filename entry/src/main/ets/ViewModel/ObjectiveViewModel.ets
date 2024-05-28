@@ -1,24 +1,34 @@
 import { SubObjectiveItemModel } from './SubObjectiveViewModel'
 
 @Observed
-export class ObjectiveViewModel {
-  constructor(public subObjectiveItemList?: SubObjectiveItemModel[]) {
+export class SubObjectiveListViewModel {
+  refresh = false
+  public subObjectiveItemList?: SubObjectiveItemModel[]
+
+  constructor(subObjectiveItemList?: SubObjectiveItemModel[]) {
+    this.subObjectiveItemList = subObjectiveItemList
   }
 
-  addItem(newItem: SubObjectiveItemModel) {
-    if (newItem === null) {
+  addItem(newItem: string) {
+    if (newItem === null || newItem === '') {
       return
     }
 
     console.log(`add item: ${newItem}`)
-    this.subObjectiveItemList.push(newItem)
+    this.subObjectiveItemList.push(new SubObjectiveItemModel(newItem))
+    this.triggerRefresh()
   }
 
-  deleteItem(itemTobeDelete: SubObjectiveItemModel) {
-    console.log(`delete item: ${itemTobeDelete}`)
+  triggerRefresh() {
+    this.refresh = !this.refresh
+  }
+
+  deleteItem() {
+    console.log(`delete selected items`)
     this.subObjectiveItemList = this.subObjectiveItemList.filter((item) => {
-      return !item.equals(itemTobeDelete);
+      return !item.isSelected;
     })
+    console.log(this.subObjectiveItemList.length.toString())
   }
 
   countCompletedItems() {
