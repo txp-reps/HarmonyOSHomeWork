@@ -32,9 +32,11 @@ export struct FutureForecast {
         .backgroundColor(Color.Green)
         .listDirection(Axis.Horizontal)
         .width('100%')
-        .height(70)
+        .height(100)
         .scrollBar(BarState.Auto)
       }
+      .alignItems(VerticalAlign.Top)
+      .height('100%')
     }
     .margin({
       top: 20

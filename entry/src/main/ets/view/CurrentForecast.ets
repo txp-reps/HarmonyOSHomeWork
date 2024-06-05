@@ -8,10 +8,10 @@ export struct CurrentForecast {
     Row() {
       Column() {
         Row() {
-          Text('26\u2103')
+          Text(`${this.currentData.currentTemp}\u2103`)
             .fontSize(35)
             .fontWeight(600)
-          Image('https://openweathermap.org/img/wn/10n.png')
+          Image(`https://openweathermap.org/img/wn/${this.currentData.icon}.png`)
             .objectFit(ImageFit.Contain)
             .width(60)
         }.margin(
@@ -21,15 +21,15 @@ export struct CurrentForecast {
         )
 
         Row() {
-          Text("未来24小时: 27\u2103/18\u2103")
+          Text(`未来24小时: ${this.currentData.minTempInFuture}\u2103/${this.currentData.maxTempInFuture}\u2103`)
         }
       }
       .alignItems(HorizontalAlign.Start)
       .width('60%')
 
       Column() {
-        Text('多云')
-        Text('体感温度：26\u2103')
+        Text(`${this.currentData.weatherDesc}`)
+        Text(`体感温度：${this.currentData.SomaTemp}\u2103`)
       }.alignItems(HorizontalAlign.End)
       .width('40%')
 

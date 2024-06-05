@@ -1,3 +1,4 @@
+import promptAction from '@ohos.promptAction';
 import { CurrentForecast } from '../view/CurrentForecast'
 import { FutureForecast } from '../view/FutureForecast'
 import { ForecastFactory as ForecastRepo, ForecastData, CurrentForecastData, Forecast3HItemList } from '../ViewModel/ForecastVM'
@@ -15,9 +16,16 @@ struct WeatherForecast {
     this.loadCompleted = true;
   }
 
-  updateData(forecastData: ForecastData) {
+  updateData(forecastData: ForecastData, showToast: boolean = false) {
     this.future3HList = forecastData.future3HList
     this.currentForecast = forecastData.currentForecast
+
+    if (showToast) {
+      promptAction.showToast({
+        message: 'load success!',
+        duration: 2000
+      });
+    }
   }
 
   build() {
