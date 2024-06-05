@@ -1,4 +1,4 @@
-import CommonConstants from '../constant/CommonConstant';
+import CommonConstants from '../common/constant/CommonConstant';
 
 @Component
 export struct ToDoListItem {

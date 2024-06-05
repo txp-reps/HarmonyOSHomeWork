@@ -1,4 +1,4 @@
-import CommonConstants from '../constant/CommonConstant';
+import CommonConstants from '../common/constant/CommonConstant';
 import { ItemCreate } from '../view/ItemCreate';
 import { ToDoListItem } from '../view/ToDoListItem'
 import { ItemModel } from '../ViewModel/ItemViewModel';
